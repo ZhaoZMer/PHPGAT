@@ -183,13 +183,6 @@ with open(output_file) as file_out:
         parse = line.replace("\n", "").split("\t")
         phage = parse[0]
         ref_phage = parse[1]
-        # ident = float(parse[-3])
-        # length = float(parse[-2])
-        # qlen = float(parse[-1])
-        # if phage not in phage_pred and length/qlen > 0.9 and ident > 0.9:
-        #     phage_pred[phage] = ref_phage
-        # elif phage in phage_pred and length/qlen > 0.9 and ident > 0.9:
-        #     phage_pred[phage].append(ref_phage)
         if phage not in phage_pred:
             phage_pred[phage] = []
             phage_pred[phage].append(ref_phage)
@@ -204,25 +197,11 @@ with open("out/phage_pred.ntw", 'w') as file_out:
     for phage, ref_phages in phage_pred.items():
         for ref_phage in ref_phages:
             file_out.write(phage + "," + ref_phage + "\n")
-#pkl.dump(phage_pred, open('out/phage_pred.dict', 'wb'))
 
 ################################################################################
 ############################### Dump the graph #################################
 ################################################################################
 
-# G = nx.Graph()
-# with open(out_fn+"intermediate.ntw") as file_in:
-#     for line in file_in.readlines():
-#         tmp = line[:-1].split(" ")
-#         node1 = tmp[0]
-#         node2 = tmp[1]
-#         G.add_edge(node1, node2, weight=1)
-#
-# graph = "out/phage_phage.ntw"
-# with open(graph, 'w') as file_out:
-#     for node1 in G.nodes():
-#         for _, node2 in G.edges(node1):
-#             _ = file_out.write(node1+","+node2+"\n")
 with open("out/intermediate.ntw", 'r') as file_in:
     with open("out/phage_phage.ntw", 'w') as file_out:
         for line in file_in:

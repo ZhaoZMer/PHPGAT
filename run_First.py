@@ -122,7 +122,7 @@ for i in range(file_id):
     try:
         out = subprocess.check_call(cmd, shell=True)
     except:
-        print("GCN Error for file contig_{i}")
+        print("Error for file contig_{i}")
         cmd = "rm input/*"
         out = subprocess.check_call(cmd, shell=True)
         exit()

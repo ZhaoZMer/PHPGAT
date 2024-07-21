@@ -29,9 +29,8 @@ def return_4mer(file_in_fn):
                 try:
                     feature[idx][mer2dict[seq[pos:pos+4]]] += 1  
                 except:
-                    #print(seq[pos:pos+4])
                     pass    
-    # nomarlization  归一化
+    # nomarlization  
     norm_feature = np.zeros((num_file, 256))
     for i in range(len(feature)):
         norm_feature[i] = (feature[i] - np.min(feature[i]))/(np.max(feature[i]) - np.min(feature[i])) 

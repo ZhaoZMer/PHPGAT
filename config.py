@@ -8,7 +8,7 @@ args.add_argument('--model', type=str, default='pretrain', choices=['pretrain', 
 args.add_argument('--lr', default=0.001, type=float, help='Learning rate of training')
 args.add_argument('--weight-decay', default=0, type=float, help='Weight Decay of optimizer')
 args.add_argument('--topk',  type=int, default=1, help='topK')
-args.add_argument('--t',  type=float, default=0.98, help='The confident threshold for predicting virus, the higier the threshold the higher the precision. (default 0.98)')
+args.add_argument('--t',  type=float, default=0.98, help='The confident threshold for predicting phages, the higier the threshold the higher the precision. (default 0.98)')
 args.add_argument('--epochs', type=int, default=4000, help='Epochs to train')
 args.add_argument('--batch-size', type=int, default=512, help='Batch size of Training')
 args.add_argument('--GATf', type=int, default=512)

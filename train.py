@@ -29,7 +29,7 @@ else:
     device = torch.device('cpu')
 
 adj = pkl.load(open("GCN_data/graph.list", "rb"))
-#features = pkl.load(open("GCN_data/feature.list",'rb'))
+features = pkl.load(open("GCN_data/feature.list",'rb'))
 id2node = pkl.load(open("GCN_data/id2node.dict", "rb"))
 node2id = pkl.load(open("GCN_data/node2id.dict", "rb"))
 idx_test = pkl.load(open("GCN_data/test_id.dict", "rb"))
@@ -71,10 +71,10 @@ df_phages = pd.read_csv('dataset/phages.csv')
 
 for i in range(len(df_phages)):
     phages = df_phages.loc[i]['Accession']
-    #label = df_phages.loc[i]['Species']
+    label = df_phages.loc[i]['Species']
     #label = df_phages.loc[i]['Genus']
     #label = df_phages.loc[i]['Family']
-    label = df_phages.loc[i]['Order']
+    #label = df_phages.loc[i]['Order']
     if phages not in phages2spe:
         phages2spe[phages] = []
         phages2spe[phages].append(label)
@@ -97,8 +97,8 @@ for i in range(len(df_name)):
 
 edge_index = from_scipy_sparse_matrix(adj)[0]
 adj_t = SparseTensor(row=edge_index[0], col=edge_index[1]).t().to(device)
-#x = torch.tensor(features, dtype=torch.float, device=device)
-x = None
+x = torch.tensor(features, dtype=torch.float, device=device)
+#x = None
 
 preprocess_dir = 'edge_index/'
 print('Preprocessing the edge_index data')
@@ -176,59 +176,6 @@ def train_accuracy():
 #     return correct/total
 
 
-def test_topk_acc(k, result_path='final_prediction.csv'):
-    # df_phages = pd.read_csv('dataset/phages.csv')
-    # phages2spe = {}
-    #
-    # for ii in range(len(df_phages)):
-    #     phages = df_phages.loc[ii]['Accession']
-    #     spe = df_phages.loc[ii]['Species']
-    #
-    #     phages2spe[phages] = spe
-    df_result = pd.read_csv(result_path)
-    acc_cal = AverageMeter()
-
-    for ii in range(len(df_result)):
-        phages = df_result.loc[ii]['contig'].split('.')[0]
-        spe_pred = []
-        for i in range(1, k+1):
-            spe_pred1 = df_result.loc[ii]['top_'+str(i)]
-            spe_pred.append(spe_pred1)
-        t = 0
-        for species in phages2spe[phages]:
-            if species in spe_pred:
-                t += 1
-        if t > 0:
-            acc_cal.update(1)
-        else:
-            acc_cal.update(0)
-
-    return acc_cal.avg
-
-
-def test_acc(result_path='final_prediction.csv'):
-    # df_phages = pd.read_csv('dataset/phages.csv')
-    # phages2spe = {}
-    #
-    # for ii in range(len(df_phages)):
-    #     phages = df_phages.loc[ii]['Accession']
-    #     spe = df_phages.loc[ii]['Species']
-    #
-    #     phages2spe[phages] = spe
-    df_result = pd.read_csv(result_path)
-    acc_cal = AverageMeter()
-
-    for ii in range(len(df_result)):
-        phages = df_result.loc[ii]['contig'].split('.')[0]
-        spe_pred = df_result.loc[ii]['top_1']
-
-        is_hit = 0
-        if (spe_pred in phages2spe[phages]):
-            is_hit = 1
-
-        acc_cal.update(is_hit)
-
-    return acc_cal.avg
 
 net = model.GATV2_Encoder(len(node2id), inputs, device).to(device)
 decoder = model.DotDecoder().to(device)
@@ -315,25 +262,7 @@ with torch.no_grad():
                 pred_label_score.append((label, pred.detach().cpu().numpy()))
         node2pred[id2node[i]] = sorted(pred_label_score, key=lambda tup: tup[1], reverse=True)
 
-        # if(idx_test[id2node[i]] == 1 and confident_label in set(trainable_label)):
-        #     total_confident += 1
-        #     if(node2pred[id2node[i]][0][0] == confident_label):
-        #         top_eq_conf += 1
-
-    # for phages in crispr_pred:
-    #     if phages not in node2pred:
-    #         pred = prokaryote_df[prokaryote_df['Accession'] == crispr_pred[phages]]['Species'].values[0]
-    #         node2pred[phages] = [(pred, 1)]
-    #
-    # for phages in RBP_pred:
-    #     if phages not in node2pred:
-    #         pred = prokaryote_df[prokaryote_df['Accession'] == RBP_pred[phages]]['Species'].values[0]
-    #         node2pred[phages] = [(pred, 1)]
-    #
-    # for phages in rRNA_pred:
-    #     if phages not in node2pred:
-    #         pred = prokaryote_df[prokaryote_df['Accession'] == rRNA_pred[phages]]['Species'].values[0]
-    #         node2pred[phages] = [(pred, 1)]
+       
 
 
 k = inputs.topk
@@ -352,9 +281,6 @@ df_pred.to_csv('final_prediction.csv', index=False)
 
 print('Prediction Finished...')
 
-test_acc = test_acc()
-print(test_acc)
-print('Prediction Finished...')
 
 
 

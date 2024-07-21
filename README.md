@@ -40,7 +40,7 @@ The format of the output file is a csv file ("final_prediction.csv") which conta
 ## Extension
 If you have more prokaryotic genomes databse,you can place your prokaryotic genomes into *prokaryote/* folder and add an entry of taxonomy information into *dataset/prokaryote.csv*.
 
-If you have more phage-host interactions database,you can place your phage's genomes into thr *nucl.fasta* file and add an entry of taxonomy information into *dataset/phages.csv*
+If you have more phage-host interactions database,you can place your phage's genomes into thr *phages_train.fasta* file and add an entry of taxonomy information into *dataset/phages.csv*
 ```
 python run_First.py --model retrain
 ``` 

@@ -1,6 +1,13 @@
 # PHPGATv2
 PHPGATv2 is a phage host prediction tool
 
+## Installation
+Download the package by 
+```
+git clone https://github.com/ZhaoZMer/PHPGATv2
+cd PHPGATv2
+```
+
 ## Required Dependencies
 * [Diamond](https://github.com/bbuchfink/diamond)
 * BLAST
@@ -43,4 +50,8 @@ If you have more prokaryotic genomes databse,you can place your prokaryotic geno
 If you have more phage-host interactions database,you can place your phage's genomes into thr *phages_train.fasta* file and add an entry of taxonomy information into *dataset/phages.csv*
 ```
 python run_First.py --model retrain
-``` 
+```
+## Contact
+Please contact ZhaoZM(754506029@qq.com or GitHub Issues) with any questions, concerns or comments.
+
+Thank you for using PHPGATv2!

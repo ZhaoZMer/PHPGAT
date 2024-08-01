@@ -1,11 +1,11 @@
-# PHPGATv2
-PHPGATv2 is a phage host prediction tool
+# PHPGAT
+PHPGAT is a phage host prediction tool
 
 ## Installation
 Download the package by 
 ```
-git clone https://github.com/ZhaoZMer/PHPGATv2
-cd PHPGATv2
+git clone https://github.com/ZhaoZMer/PHPGAT
+cd PHPGAT
 ```
 
 ## Required Dependencies
@@ -21,7 +21,7 @@ cd PHPGATv2
 ### An easiler way to install
 *Note*: we suggest you to install all the package using conda (both miniconda and [Anaconda](https://anaconda.org/) are ok)
 
-After cloning this respository, you can use anaconda to install the **PHPGATv2.yaml**. The command is: `conda env create -f PHPGATv2.yaml -n PHPGATv2`
+After cloning this respository, you can use anaconda to install the **PHPGATv2.yaml**. The command is: `conda env create -f PHPGATv2.yaml -n PHPGAT`
 
 ### Prepare the databae
 Due to the limited size of the GitHub,you can use ncbi-genome-download to download the dataset.
@@ -33,7 +33,7 @@ Move to the prokaryote folder after completing the command.
 
 ## Usage
 ```
-conda activate PHPGATv2
+conda activate PHPGAT
 python run_First.py --contigs test.fasta --len 1000 --model pretrain --topk 20 
 ```  
 + The input of --contifs is the file name of the input file.

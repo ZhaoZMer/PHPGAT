@@ -54,4 +54,4 @@ python run_First.py --model retrain
 ## Contact
 Please contact ZhaoZM(754506029@qq.com or GitHub Issues) with any questions, concerns or comments.
 
-Thank you for using PHPGATv2!
+Thank you for using PHPGAT!

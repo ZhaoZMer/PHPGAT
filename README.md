@@ -32,27 +32,32 @@ ncbi-genome-download -p 4 -F fasta,gff,genbank,protein-fasta  --assembly-accessi
 Move to the prokaryote folder after completing the command.
 
 ## Usage
+The input should be a fasta file containing the viral sequences. We provide an example file named "test.fasta". Then, the only command that you need to run is 
 
-**Options**
+    python run_Speed_up.py [-h] [--contigs CONTIGS] [--len LEN] [--model {pretrain,retrain}] [--topk TOPK] [--use-cpu] [--gpus]
 
+### Options
 
-      --contigs INPUT_FA
-                            input fasta file
-      --len MINIMUM_LEN
-                            predict only for sequence >= len bp (default 8000)
-      --model MODEL (pretrain or retrain)
-                            predicting host with pretrained parameters or retrained paramters (default pretrain)
-      --topk TOPK_PRED
-                            The host prediction with topk score (default 1)
+      -h,--help
+                            show this help message and exit
+      --contigs
+                            the file name of the input file
+      --len
+                            the minimum input length limit, that is, predict only for sequence >= len bp (default 0)
+      --model
+                            predict host with pretrained parameters or retrained paramters (default pretrain)
+      --topk 
+                            predict the top k hosts(default 1)
+      --use-cpu 
+                            Force the use of CPU (default: False)
+      --gpus 
+                            GPU device ID (only used if --use-cpu is not set)
+
+### Example
 ```
 conda activate PHPGAT
 python run_First.py --contigs test.fasta --len 1000 --model pretrain --topk 20 
 ```  
-+ The input of --contifs is the file name of the input file.
-+ The input of --len is is the minimum input length limit, that is, predict only for sequence >= len bp (default 0).
-+ The input of --model is predict host with pretrained parameters or retrained paramters (default pretrain).
-+ The input of --topk is predict the top k hosts(default 1).
-
 ### Output
 The format of the output file is a csv file ("final_prediction.csv") which contain the prediction of each phages.
 

@@ -1,9 +1,9 @@
 import argparse
 
 args = argparse.ArgumentParser(description='manual to this script')
-args.add_argument('--contigs', type=str, default='test_contigs.fa')
-args.add_argument('--len', type=int, default=8000)
-args.add_argument('--gpus', type=int, default=0)
+args.add_argument('--contigs', type=str, default='test_contigs.fa', help=' the file name of the input file')
+args.add_argument('--len', type=int, default=8000, help='the minimum input length limit, that is, predict only for sequence >= len bp (default 0)')
+args.add_argument('--gpus', type=int, default=0, help='GPU device ID (only used if --use-cpu is not set)')
 args.add_argument('--model', type=str, default='pretrain', choices=['pretrain', 'retrain'], help='predicting host with pretrained parameters or retrained paramters (default pretrain)')
 args.add_argument('--lr', default=0.001, type=float, help='Learning rate of training')
 args.add_argument('--weight-decay', default=0, type=float, help='Weight Decay of optimizer')

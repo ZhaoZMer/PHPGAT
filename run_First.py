@@ -26,6 +26,7 @@ parser.add_argument('--topk',  type=int, default=1, help='topK')
 parser.add_argument('--t',  type=float, default=0.98, help='The confident threshold for predicting phages, the higier the threshold the higher the precision. (default 0.98)')
 parser.add_argument('--epochs', type=int, default=4000, help='Epochs to train')
 parser.add_argument('--batch-size', type=int, default=512, help='Batch size of Training')
+parser.add_argument('--use-cpu', action='store_true', help='Force the use of CPU (default: False)')
 
 inputs = parser.parse_args()
 

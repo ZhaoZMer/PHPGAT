@@ -32,6 +32,18 @@ ncbi-genome-download -p 4 -F fasta,gff,genbank,protein-fasta  --assembly-accessi
 Move to the prokaryote folder after completing the command.
 
 ## Usage
+
+**Options**
+
+
+      --contigs INPUT_FA
+                            input fasta file
+      --len MINIMUM_LEN
+                            predict only for sequence >= len bp (default 8000)
+      --model MODEL (pretrain or retrain)
+                            predicting host with pretrained parameters or retrained paramters (default pretrain)
+      --topk TOPK_PRED
+                            The host prediction with topk score (default 1)
 ```
 conda activate PHPGAT
 python run_First.py --contigs test.fasta --len 1000 --model pretrain --topk 20 

@@ -16,9 +16,9 @@ from utils import check_folder
 #####################################################################
 
 parser = argparse.ArgumentParser(description='manual to this script')
-parser.add_argument('--contigs', type=str, default='test.fasta')
-parser.add_argument('--len', type=int, default=8000)
-parser.add_argument('--gpus', type=int, default=0)
+parser.add_argument('--contigs', type=str, default='test.fasta', help=' the file name of the input file')
+parser.add_argument('--len', type=int, default=8000, help='the minimum input length limit, that is, predict only for sequence >= len bp (default 0)')
+parser.add_argument('--gpus', type=int, default=0, help='GPU device ID (only used if --use-cpu is not set)')
 parser.add_argument('--model', type=str, default='pretrain', choices=['pretrain', 'retrain'], help='predicting host with pretrained parameters or retrained paramters (default pretrain)')
 parser.add_argument('--lr', default=0.001, type=float, help='Learning rate of training')
 parser.add_argument('--weight-decay', default=0, type=float, help='Weight Decay of optimizer')

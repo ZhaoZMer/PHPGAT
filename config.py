@@ -14,7 +14,7 @@ args.add_argument('--batch-size', type=int, default=512, help='Batch size of Tra
 args.add_argument('--GATf', type=int, default=512)
 args.add_argument('--GATh', type=int, default=4)
 args.add_argument('--head', type=int, default=4)
-
+args.add_argument('--use-cpu', action='store_true', help='Force the use of CPU (default: False)')
 
 inputs = args.parse_args()
 print(inputs)

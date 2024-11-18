@@ -21,11 +21,15 @@ np.random.seed(seed)
 torch.random.manual_seed(seed)
 inputs = args.parse_args()
 
-if torch.cuda.is_available():
+if args.use_cpu:
+    print("Running with CPU")
+    device = torch.device('cpu')
+elif torch.cuda.is_available():
     torch.cuda.set_device(inputs.gpus)
     device = torch.device('cuda')
+     print(f"Running with GPU: {args.gpus}")
 else:
-    print("Running with cpu")
+    print("Running with cpu (no GPU available)")
     device = torch.device('cpu')
 
 adj = pkl.load(open("GCN_data/graph.list", "rb"))

@@ -32,7 +32,7 @@ ncbi-genome-download -p 4 -F fasta,gff,genbank,protein-fasta  --assembly-accessi
 Move to the prokaryote folder after completing the command.
 
 ## Usage
-The input should be a fasta file containing the viral sequences. We provide an example file named "test.fasta". Then, the only command that you need to run is 
+The input should be a fasta file containing the phage sequences. We provide an example file named "test.fasta". Then, the only command that you need to run is 
 
     python run_Speed_up.py [-h] [--contigs CONTIGS] [--len LEN] [--model {pretrain,retrain}] [--topk TOPK] [--use-cpu] [--gpus]
 

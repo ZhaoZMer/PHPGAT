@@ -102,7 +102,6 @@ for i in range(len(df_name)):
 edge_index = from_scipy_sparse_matrix(adj)[0]
 adj_t = SparseTensor(row=edge_index[0], col=edge_index[1]).t().to(device)
 x = torch.tensor(features, dtype=torch.float, device=device)
-#x = None
 
 preprocess_dir = 'edge_index/'
 print('Preprocessing the edge_index data')

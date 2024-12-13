@@ -19,7 +19,7 @@ class GATV2_Encoder(torch.nn.Module):
     def __init__(self, num_node, num_feat, device):
         super().__init__()
         self.device = device
-        self.gat1 = GATv2Conv(128, 64, 4, concat=False)
+        self.gat1 = GATv2Conv(256, 64, 4, concat=False)
         self.ELU = nn.ELU()
         self.emb = torch.nn.Embedding(num_node, num_feat)
         torch.nn.init.xavier_normal_(self.emb.weight)

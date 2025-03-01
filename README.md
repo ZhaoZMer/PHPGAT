@@ -68,7 +68,20 @@ If you have more phage-host interactions database,you can place your phage's gen
 ```
 python run_First.py --model retrain
 ```
+## Reference
+@article{
+  title={PHPGAT: predicting phage hosts based on multimodal heterogeneous knowledge graph with graph attention network},  
+  author={Fu Liu, Zhimiao Zhao, Yun Liu},  
+  journal={Briefings in Bioinformatics},  
+  volume={26},  
+  number={1},  
+  pages={bbaf017},  
+  year={2025},  
+  publisher={Oxford University Press}  
+}
 ## Contact
 Please contact ZhaoZM(754506029@qq.com or GitHub Issues) with any questions, concerns or comments.
 
 Thank you for using PHPGAT!
+
+
